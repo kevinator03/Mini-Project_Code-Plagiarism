@@ -77,7 +77,7 @@ for line in lst_string:
             var_count[2] += 1
         if i == '=' and flag2[3] == 1:
             var_count[3] += 1
-        if i == '=' and flag2[4] == 1:       # lines 47-60 keep track of the various variables
+        if i == '=' and flag2[4] == 1:       # lines 69-85 keep track of the various variables
             var_count[4] += 1
         if i == '=' and flag2[5] == 1:
             var_count[5] += 1
