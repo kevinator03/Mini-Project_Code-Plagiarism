@@ -1,3 +1,4 @@
+#checking if my got works lol
 def preprocessing(prog):
     flag1 = 0  # set it to 1 when we encounter comment start
     flag2 = 0  # for variables 
