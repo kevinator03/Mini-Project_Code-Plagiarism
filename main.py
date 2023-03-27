@@ -143,7 +143,7 @@ int number = 987654, reverse = 0;  // reverse is to store the reverse of the num
 while(number != 0)   // while condition
 {  
 int Rem = number % 10;  
-rev = rev * 10 + Rem;  // taking individual digits of the number backwards
+reverse = reverse * 10 + Rem;  // taking individual digits of the number backwards
 number = number/10;  
 }  
 System.out.println("The reverse of the given number is most probably: " + rev);  // the required output
