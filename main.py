@@ -1,5 +1,3 @@
-#checking if my got works lol
-
 import os
 from preprocess import preprocessing
 from numpy import vectorize 
