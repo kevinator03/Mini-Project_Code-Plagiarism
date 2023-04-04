@@ -4,8 +4,9 @@ import re
 
 
 def preprocessing(prog):
-    flag1 = 0  # set it to 1 when we encounter comment start
+    # flag1 = 0         became irrelevant when loc was introduced
     flag2 = 0  # for variables 
+    loc = 0 # to store the index of first occurence of single line comment
 
     data_types = ['int', 'long', 'double',
                 'boolean', 'char', 'string', 'void', 'float']     # to store the data types which will help checking for integers and functions
@@ -27,18 +28,19 @@ def preprocessing(prog):
     for line in lst_string:
         line = line.split()
         for i in line:
-            if i == '//':
-                flag1 = 1
-            if flag1 == 0:
-                no_comments_string += i + ' '
+            loc = i.find('//')
+            if loc >= 0:
+                no_comments_string += i[0:loc] + ' '
+                break
+            no_comments_string += i + ' '
         if no_comments_string != '':
             no_comments_code.append(no_comments_string)
         no_comments_string = ""
-        flag1 = 0
 
     for i in range(0, len(no_comments_code)):        
         line = [word for word in re.split("\W+",no_comments_code[i])]
         no_comments_code[i] = ' '.join(line)
+
 
     temp_string = ""                 # parsing the string to detect function and variable names
     for line in no_comments_code:
@@ -59,14 +61,11 @@ def preprocessing(prog):
         temp_string = ""
 
 
-    for i in range(0, len(normalised_code)):        # start from line 3 to avoid picking up a variable name as part of the class name which is sometimes common
+    for i in range(0, len(normalised_code)):        
         line = [word for word in re.split("\W+",normalised_code[i]) if word.lower() not in special_names]
         normalised_code[i] = ' '.join(line)
 
-
-    # for i in range(0, len(normalised_code)):
-    #     line = [word for word in re.split("\W+",normalised_code[i]) if word.lower() not in func_names]
-    #     normalised_code[i] = ' '.join(line)
+    print(normalised_code)
                 
     str1 = ''            
     for i in normalised_code:
